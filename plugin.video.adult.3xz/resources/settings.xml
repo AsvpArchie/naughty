@@ -1,0 +1,41 @@
+<settings>
+	<category label="30700">
+        <!-- General -->
+		<setting label="30725" type="labelenum" id="theme_id" values="Default|None"/>
+        <setting type="sep" />
+        <setting label="30734" type="labelenum" id="sourcelisttype" values="Dialog|Directory"/>
+        <setting type="sep" />
+        <setting label="30726" type="slider" id="historysizelimit" default="25" range="0,50" option="int" />
+        <setting label="30731" type="slider" id="searchsizelimit" default="10" range="0,50" option="int" />
+        <!-- <setting label="30732" type="slider" id="playsizelimit" default="10" range="0,50" option="int" /> -->
+	</category>
+	<category label="30703">
+        <!-- Playback -->
+		<setting id="autoplay" type="bool" default="FALSE" visible="TRUE" label="30716" />
+        <setting id="usehd" type="bool" default="FALSE" visible="TRUE" label="30733" />
+        <setting id="preresolve" type="bool" default="FALSE" visible="TRUE" label="30730" />
+        <setting type="sep" />
+        <setting id="editurl" type="bool" default="FALSE" visible="TRUE" label="30717" />
+    </category>
+	<category label="30704">
+        <!-- Net -->
+        <setting label="30718" type="slider" id="sockettimeout" default="60" range="30,180" option="int" />
+        <setting type="sep" />
+        <setting label="30727" type="slider" id="cacheexpiry" default="7" range="0,480" option="int" />
+        <setting label="30728" type="slider" id="cachesizelimit" default="5" range="0,30" option="int" />
+        <setting type="sep" />
+        <setting id="clear_cache" type="action" action="RunPlugin(plugin://$ID/?site=clear_cache)" visible="TRUE" label="30729" />
+        <setting id="clear_cookies" type="action" action="RunPlugin(plugin://$ID/?site=clear_cookies)" visible="TRUE" label="30719" />
+    </category>
+	<category label="30720">
+        <!-- General -->
+		<setting id="lock_toggle" type="action" action="RunPlugin(plugin://$ID/?site=lock_toggle)" visible="TRUE" label="30721" />
+        <setting id="lock_password" type="action" action="RunPlugin(plugin://$ID/?site=lock_password)" visible="TRUE" label="30722" />
+        <setting type="sep" />
+        <setting type="lsep" label="30791" />
+        <setting type="lsep" />
+        <setting type="lsep" label="30792" />
+        <setting type="sep" />
+        <setting type="lsep" label="30793" />
+	</category>
+</settings>
