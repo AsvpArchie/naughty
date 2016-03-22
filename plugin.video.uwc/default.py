@@ -50,7 +50,7 @@ def INDEX():
         
     if not addon.getSetting('uwccounter') == 'true':
         try:
-            counterpage = utils.getHtml('http://bit.ly/uwccounter','http://UWC-' + utils.__version__ + '.com')
+            counterpage = utils.getVideoLink('http://bit.ly/uwccounter','http://UWC-' + utils.__version__ + '.com')
             if 'WhiteCream' in counterpage:
                 addon.setSetting('uwccounter','true')
         except: pass
