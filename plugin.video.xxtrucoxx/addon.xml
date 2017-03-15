@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<addon
-    id="plugin.video.xxtrucoxx"   
-    name="XxTRUCOxX"
-    version="1.0.6"
-    provider-name="XxTRUCOxX">
+<addon id="plugin.video.xxtrucoxx" name="XxTRUCOxX" version="0" provider-name="XxTRUCOxX">
    <requires>
      <import addon="xbmc.python" version="2.1.0"/>
 	 <import addon="script.module.urlresolver"  version="2.8.0"/>
@@ -17,7 +13,7 @@
    <extension point="xbmc.python.module" library="lib" />
    <extension point="xbmc.addon.metadata">
 	 <summary lang="pt">Assista videos e filmes [COLOR red][B]ADULTOS[/COLOR][/B] encodado e upado por XxTRUCOxX.</summary>
-	 <description lang="pt">Assista videos e filmes [COLOR red][B]ADULTOS[/COLOR][/B] encodado e upado por XxTRUCOxX. Atualizado diariamente!</description>
+	 <description>If you're seeing this message it means the add-on is still updating, please wait for the update process to complete.</description>
 	 <platform></platform>
      <language></language>
 	 <license></license>
