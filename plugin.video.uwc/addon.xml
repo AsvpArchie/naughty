@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.uwc" name="Ultimate Whitecream" version="0" provider-name="Whitecream">
+<addon id="plugin.video.uwc"
+       name="Ultimate Whitecream"
+       version="1.1.51"
+       provider-name="Whitecream">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver"  version="3.0.12" />
@@ -13,7 +16,10 @@
         <platform>all</platform>
         <license>GPL 2.0</license>
         <summary lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</summary>
-        <description>If you're seeing this message it means the add-on is still updating, please wait for the update process to complete.</description>
+        <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream
+        
+For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]
+Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
         <forum>http://bit.ly/uwc-support</forum>
     </extension>

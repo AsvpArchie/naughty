@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.ninjasys" name="The [COLOR blue]Ninjasys[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]oneil[/COLOR]" version="0" provider-name="oneil">
+<addon id="repository.ninjasys" name="The [COLOR blue]Ninjasys[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]oneil[/COLOR]" version="1.0" provider-name="oneil">
 	<extension point="xbmc.addon.repository" name="The [COLOR blue]Ninjasys[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]oneil[/COLOR]">
 		<info compressed="false">http://r.ninjasys.uk/addons.xml</info>
 		<checksum>http://r.ninjasys.uk/addons.xml.md5</checksum>

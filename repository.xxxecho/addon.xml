@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.xxxecho" name="ECHO XXX Repository" version="0" provider-name="Echo Coder">
+<addon id="repository.xxxecho" name="ECHO XXX Repository" version="1.04" provider-name="Echo Coder">
 	<extension point="xbmc.addon.repository" name="Echo Coder XXX Repository">
 		<dir>
 			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>

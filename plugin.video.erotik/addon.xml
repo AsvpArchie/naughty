@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.erotik" name="Erotik (XXX)" version="0" provider-name="MetalKettle">
+<addon id="plugin.video.erotik" name="Erotik (XXX)" version="1.0.20" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="1.1.0"/>
@@ -11,7 +11,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
-    <description>If you're seeing this message it means the add-on is still updating, please wait for the update process to complete.</description>
+    <description lang="en"></description>
     <platform>all</platform>
   </extension>
 </addon>

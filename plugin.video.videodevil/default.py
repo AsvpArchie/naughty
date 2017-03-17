@@ -1,6 +1,21 @@
-import xbmcplugin,xbmcgui,xbmc,xbmcaddon,os,sys
-AddonID="plugin.video.videodevil"
-AddonName="VideoDevil"
-dialog=xbmcgui.Dialog()
-dialog.ok(AddonName+" Add-on Requires Update","This add-on may still be in the process of the updating so we recommend waiting a few minutes to see if it updates naturally. If it hasn't updated after 5mins please try reinstalling via the Community Portal add-on")
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
+import xbmcaddon
+
+__plugin__ = 'VideoDevil'
+__author__ = 'sfaxman'
+__credits__ = 'bootsy'
+
+addon = xbmcaddon.Addon(id='plugin.video.videodevil')
+rootDir = addon.getAddonInfo('path')
+if rootDir.endswith(';'):
+    rootDir = rootDir[:-1]
+
+class Main:
+    def __init__(self):
+        self.pDialog = None
+        self.run()
+
+    def run(self):
+        import videodevil
+        videodevil.Main()
+
+Main()
