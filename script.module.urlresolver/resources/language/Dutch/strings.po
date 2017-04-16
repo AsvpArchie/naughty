@@ -177,3 +177,11 @@ msgctxt "#33039"
 msgid "OK"
 msgstr "OK"
 
+msgctxt "#33040"
+msgid "IP Stream Authorization Pairing"
+msgstr "IP Stream Authoriseren Pair"
+
+msgctxt "#33041"
+msgid "No IP Authorization"
+msgstr "Geen IP Authorisatie"
+
