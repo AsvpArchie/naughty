@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.eroticshark" name="Erotic Shark" version="1.7.1" provider-name="Murdock">
+<addon id="plugin.video.eroticshark" name="Erotic Shark" version="0" provider-name="Murdock">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
