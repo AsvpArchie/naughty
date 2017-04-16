@@ -37,10 +37,10 @@ next_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + ad
 search_icon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porncom/search.png'))
 twitter_icon     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porncom/twitter.png'))
 pc_icon          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porncom/pc.png'))
-HISTORY_FILE     = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'history.xml'))
-FAVOURITES_FILE  = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'favourites.xml'))
-DOWNLOADS_FILE   = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'downloads.xml'))
-DATA_FOLDER      = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
+HISTORY_FILE     = xbmc.translatePath(os.path.join('special://profile/addon_data/' + addon_id , 'history.xml'))
+FAVOURITES_FILE  = xbmc.translatePath(os.path.join('special://profile/addon_data/' + addon_id , 'favourites.xml'))
+DOWNLOADS_FILE   = xbmc.translatePath(os.path.join('special://profile/addon_data/' + addon_id , 'downloads.xml'))
+DATA_FOLDER      = xbmc.translatePath(os.path.join('special://profile/addon_data/' + addon_id))
 SEARCH_FILE      = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
 
 def MAIN_MENU():
@@ -87,6 +87,7 @@ def GET_CONTENT(url):
 	match2 = re.compile('<a(.+?)class="icon-thumbs-up">',re.DOTALL).findall(string)
 	for item in match2:
 		title=re.compile('class="title">(.+?)<').findall(item)[0]
+		if '</a>' in title: title = 'Unknown'
 		url=re.compile('href="(.+?)"').findall(item)[0]
 		iconimage=re.compile('src="(.+?)"').findall(item)[0]
 		url = "http://porn.com" + str(url)
