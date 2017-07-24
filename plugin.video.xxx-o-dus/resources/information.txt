@@ -1,18 +1,29 @@
-[COLOR deeppink]XXX-O-DUS Information[/COLOR]
+Welcome to XXX-O-DUS
 
-[COLOR pink]XXX-O-DUS is a multi scraper addon for Kodi that uses many different sources to get content for your viewing pleasure.
-The addon does not host any of the content within and all content is streamed directly from the source.
-[/COLOR]
-[COLOR red]The addon contains features that you should be aware of:
+[B]IF YOU DO NOT READ THIS MESSAGE YOU WILL NOT GET ALL OF THE BENEFITS XXXODUS HAS TO OFFER![/B]
 
-[B]1) History Monitoring[/B][/COLOR]
-	[COLOR white]History monitoring is disabled by default. It can be enabled from the settings of the addon.[/COLOR]
+Features:
 
-[COLOR red][B]2) Downloadable Videos[/B][/COLOR]
-	[COLOR white]All videos within the addon are downloadable. You can select the location to download the addon and watch them from the My Downloads section of the main menu.[/COLOR]
+XXXODUS offers many features including downloads, favorites, history and more.
 
-[COLOR red][B]3) Favourites[/B][/COLOR]
-	[COLOR white]The addon contains many scrapers that in total will pull hundreds of thousands of videos. Should you find a video  you like you can add it to the favourites by clicking Add To Favourites on the prompt before watching any video.[/COLOR]
+To get the benefits of these features you must view the context menu.
 
-[COLOR red][B]4) Parental Controls[/B][/COLOR]
-	[COLOR white]We know how sensitive this type of material can be. For this reason we have included parental controls within the addon. These controls can only be accessed from within the addon (not the settings dialog) this is to ensure that should anyone wish to disable the controls they will first need to log in with the code. In addition to this the code is encoded when stored so even if someone got the code it would be useless to them without decoding it.[/COLOR]
+If you open the context menu on a video you will have the option to download, add to favorites etc.
+You can also remove search terms, remove history items, download from history and more but you must view the context menu to do this.
+
+Inside the XXXODUS settings there are many options you can choose from. For example XXXODUS will return numerous video source quality's for certain scrapers. You can select to auto play which will always pick the highest quality link found.
+
+There is also a Mobile Option. Enabling this will select the low quality links automatically to save on mobile data usage.
+
+VERY VERY IMPORTANT:
+
+XXXODUS will be managed and maintained from my GitHub. 
+
+I will ONLY listen to issues and feature requests when they are submitted to my git.
+
+You can get to the Xibalba GitHub at:
+
+[B]https://github.com/xibalba10[/B]
+
+
+Thank you for your time. ENJOY!

@@ -14,141 +14,75 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-#Imports
-import xbmc, xbmcaddon, xbmcgui, xbmcplugin,os,base64,sys,xbmcvfs
-import urllib2,urllib
-import time
-import re
+import xbmc,xbmcplugin,os,urllib
+import kodi
+import log_utils
+import helper
+import utils
+import search
+import downloader
+import parental
+import history
+import favorites
+from resources.lib.pyxbmct_.github import xxxgit
+from scrapers import __all__
+from scrapers import *
 
-from resources.lib.modules  import common
+buildDirectory = utils.buildDir
+specific_icon       = xbmc.translatePath(os.path.join('special://home/addons/script.xxxodus.artwork/resources/art/', '%s/icon.png'))
+specific_fanart     = xbmc.translatePath(os.path.join('special://home/addons/script.xxxodus.artwork/resources/art/', '%s/fanart.jpg'))
 
-addon_id            = 'plugin.video.xxx-o-dus'
-AddonTitle          = '[COLOR orangered]XXX-O-DUS[/COLOR]'
-fanart              = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
-icon                = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
-xhamster_icon       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xhamster/icon.png'))
-xhamster_fanart     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xhamster/fanart.jpg'))
-chaturbate_icon     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/chaturbate/icon.png'))
-chaturbate_fanart   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/chaturbate/fanart.jpg'))
-xnxx_icon           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xnxx/icon.png'))
-xnxx_fanart         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xnxx/fanart.jpg'))
-redtube_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/redtube/icon.png'))
-redtube_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/redtube/fanart.jpg'))
-pornhd_icon         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornhd/icon.png'))
-pornhd_fanart       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornhd/fanart.jpg'))
-porncom_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porncom/icon.png'))
-porncom_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porncom/fanart.jpg'))
-youporn_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/youporn/icon.png'))
-youporn_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/youporn/fanart.jpg'))
-pornfun_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornfun/icon.png'))
-pornfun_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornfun/fanart.jpg'))
-motherless_icon     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/motherless/icon.png'))
-motherless_fanart   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/motherless/fanart.jpg'))
-spankbang_icon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/spankbang/icon.png'))
-spankbang_fanart    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/spankbang/fanart.jpg'))
-porn00_icon         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porn00/icon.png'))
-porn00_fanart       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porn00/fanart.jpg'))
-virtualpornstars_icon   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/virtualpornstars/icon.png'))
-virtualpornstars_fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/virtualpornstars/fanart.jpg'))
-watchxxxfree_icon   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/watchxxxfree/icon.png'))
-watchxxxfree_fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/watchxxxfree/fanart.jpg'))
-perfectgirls_icon   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/perfectgirls/icon.png'))
-perfectgirls_fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/perfectgirls/fanart.jpg'))
-justporno_icon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/justporno/icon.png'))
-justporno_fanart    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/justporno/fanart.jpg'))
-eporner_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/eporner/icon.png'))
-eporner_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/eporner/fanart.jpg'))
-pornxs_icon         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornxs/icon.png'))
-pornxs_fanart       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornxs/fanart.jpg'))
-xvideos_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xvideos/icon.png'))
-xvideos_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xvideos/fanart.jpg'))
-nxgx_icon           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/nxgx/icon.png'))
-nxgx_fanart         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/nxgx/fanart.jpg'))
-madthumbs_icon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/madthumbs/icon.png'))
-madthumbs_fanart    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/madthumbs/fanart.jpg'))
-ultravid_icon       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/ultravid/icon.png'))
-ultravid_fanart     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/ultravid/fanart.jpg'))
-freeomovie_icon     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/freeomovie/icon.png'))
-freeomovie_fanart   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/freeomovie/fanart.jpg'))
-overthumbs_icon     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/overthumbs/icon.png'))
-overthumbs_fanart   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/overthumbs/fanart.jpg'))
+@utils.url_dispatcher.register('0')
+def mainMenu():
 
-def SEARCH():
+    art = xbmc.translatePath(os.path.join('special://home/addons/script.xxxodus.artwork/resources/art/', 'main/%s.png'))
 
-    common.addDir("[COLOR white]SEARCH ALL WESBITES[/COLOR]","null",99,icon,fanart)
-    common.addLink("[COLOR darkgray]#################################[/COLOR]","url",999,icon,fanart)
-    common.addDir("[COLOR white]Search Eporner[/COLOR]",'null',244,eporner_icon,eporner_fanart)
-    common.addDir("[COLOR white]Search Just Porno TV[/COLOR]","null",234,justporno_icon,justporno_fanart)
-    common.addDir("[COLOR white]Search MadThumbs[/COLOR]","null",284,madthumbs_icon,madthumbs_fanart)
-    common.addDir("[COLOR white]Search Motherless[/COLOR]","null",97,motherless_icon,motherless_fanart)
-    common.addDir("[COLOR white]Search NXGX[/COLOR]","null",274,nxgx_icon,nxgx_fanart)
-    common.addDir("[COLOR white]Search OverThumbs[/COLOR]","null",294,overthumbs_icon,overthumbs_fanart)
-    common.addDir("[COLOR white]Search Perfect Girls[/COLOR]","null",314,perfectgirls_icon,perfectgirls_fanart)
-    common.addDir("[COLOR white]Search Porn.com[/COLOR]","null",64,porncom_icon,porncom_fanart)
-    common.addDir("[COLOR white]Search Porn00[/COLOR]","null",214,porn00_icon,porn00_fanart)
-    common.addDir("[COLOR white]Search PornFun[/COLOR]","null",84,pornfun_icon,pornfun_fanart)
-    common.addDir("[COLOR white]Search PornHD[/COLOR]","null",54,pornhd_icon,pornhd_fanart)
-    common.addDir("[COLOR white]Search PornXS[/COLOR]",'null',254,pornxs_icon,pornxs_fanart)
-    common.addDir("[COLOR white]Search RedTube[/COLOR]","null",45,redtube_icon,redtube_fanart)
-    common.addDir("[COLOR white]Search Spankbang[/COLOR]","null",205,spankbang_icon,spankbang_fanart)
-    common.addDir("[COLOR white]Search Virtual Porn Stars[/COLOR]","null",224,virtualpornstars_icon,virtualpornstars_fanart)
-    common.addDir("[COLOR white]Search Watch XXX Free[/COLOR]","null",304,watchxxxfree_icon,watchxxxfree_fanart)
-    common.addDir("[COLOR white]Search Xhamster[/COLOR]","null",14,xhamster_icon,xhamster_fanart)
-    common.addDir("[COLOR white]Search XNXX[/COLOR]","null",29,xnxx_icon,xnxx_fanart)
-    common.addDir("[COLOR white]Search Xvideos[/COLOR]",'null',264,xvideos_icon,xvideos_fanart)
-    common.addDir("[COLOR white]Search YouPorn[/COLOR]","null",74,youporn_icon,youporn_fanart)
-
-    common.SET_VIEW('list')
+    dirlst = []
+    c = []
     
+    if kodi.get_setting('mobile_mode') == 'true':
+        c += [(kodi.giveColor('Mobile Mode ON','deeppink',True),None,19,None,'Mobile Mode auto selects low bandwidth files to limit mobile data usage.',False)]
+    c += [
+         (kodi.giveColor('Welcome to XXX-O-DUS Version %s' % kodi.get_version() ,'dodgerblue',True),xbmc.translatePath(os.path.join(kodi.addonfolder, 'resources/files/information.txt')),17,'icon','All issues must be reported at https://github.com/xibalba10/plugin.video.xxx-o-dus/issues or I will not know the issues exist. I will not provide support at any other location as one central place for everyone to see and discuss issues benefits everyone.',False), \
+         (kodi.giveColor(kodi.countGitHubIssues('https://github.com/xibalba10/plugin.video.xxx-o-dus/issues'),'dodgerblue',True) + kodi.giveColor(' | Click To View Issues','white',True),None,34,'report','All issues must be reported at https://github.com/xibalba10/plugin.video.xxx-o-dus/issues or I will not know the issues exist. I will not provide support at any other location as one central place for everyone to see and discuss issues benefits everyone.',False), \
+         ('Search...',None,29,'search','Search XXX-O-DUS',True), \
+         ('Chaturbate',None,300,'chaturbate','Chaturbate',True), \
+         ('Tubes',None,4,'tubes','Videos',True), \
+         ('Parental Controls',None,5,'parental_controls','View/Change Parental Control Settings.',True), \
+         ('Your History',None,20,'history','View Your History.',True), \
+         ('Your Favourites',None,23,'favourites','View Your Favourites.',True), \
+         ('Your Downloads',None,27,'downloads','View Your Downloads.',True), \
+         ('Your Settings',None,19,'settings','View/Change Addon Settings.',False), \
+         #('View Disclaimer',xbmc.translatePath(os.path.join(kodi.addonfolder, 'resources/files/disclaimer.txt')),17,'disclaimer','View XXX-O-DUS Disclaimer.',False), \
+         ('View Addon Information',xbmc.translatePath(os.path.join(kodi.addonfolder, 'resources/files/information.txt')),17,'addon_info','View XXX-O-DUS Information.',False), \
+         ('RESET XXX-O-DUS',None,18,'reset','Reset XXX-O-DUS to Factory Settings.',False), \
+         (kodi.giveColor('Report Issues @ https://github.com/xibalba10/plugin.video.xxx-o-dus/issues','white',True),xbmc.translatePath(os.path.join(kodi.addonfolder, 'resources/files/information.txt')),17,'report','All issues must be reported at https://github.com/xibalba10/plugin.video.xxx-o-dus/issues or I will not know the issues exist. I will not provide support at any other location as one central place for everyone to see and discuss issues benefits everyone.',False), \
+         ]
+    
+    for i in c:
+        icon    = art % i[3]
+        fanart  = kodi.addonfanart
+        dirlst.append({'name': kodi.giveColor(i[0],'white'), 'url': i[1], 'mode': i[2], 'icon': icon, 'fanart': fanart, 'description': i[4], 'folder': i[5]})
+
+    buildDirectory(dirlst, cache=False)
+    
+@utils.url_dispatcher.register('4')
 def VIDEOS():
 
-    common.addDir("[COLOR white]Eporner.com[/COLOR]",'url',240,eporner_icon,eporner_fanart)
-    common.addDir("[COLOR white]JustPorno.TV[/COLOR]",'url',230,justporno_icon,justporno_fanart)
-    common.addDir("[COLOR white]Madthumbs.com[/COLOR]",'url',280,madthumbs_icon,madthumbs_fanart)
-    common.addDir("[COLOR white]Motherless.com[/COLOR]",'url',93,motherless_icon,motherless_fanart)
-    common.addDir("[COLOR white]NXGX.com[/COLOR]",'url',270,nxgx_icon,nxgx_fanart)
-    common.addDir("[COLOR white]Overthumbs.com[/COLOR]",'url',290,overthumbs_icon,overthumbs_fanart)
-    common.addDir("[COLOR white]Perfectgirls.net[/COLOR]",'url',310,perfectgirls_icon,perfectgirls_fanart)
-    common.addDir("[COLOR white]Porn00.org[/COLOR]",'url',210,porn00_icon,porn00_fanart)
-    common.addDir("[COLOR white]Porn.com[/COLOR]",'url',60,porncom_icon,porncom_fanart)
-    common.addDir("[COLOR white]PornFun.com[/COLOR]",'url',80,pornfun_icon,pornfun_fanart)
-    common.addDir("[COLOR white]PornHD.com[/COLOR]",'url',50,pornhd_icon,pornhd_fanart)
-    common.addDir("[COLOR white]PornXS.com[/COLOR]",'url',250,pornxs_icon,pornxs_fanart)
-    common.addDir("[COLOR white]RedTube.com[/COLOR]",'url',41,redtube_icon,redtube_fanart)
-    common.addDir("[COLOR white]Spankbang.com[/COLOR]",'url',200,spankbang_icon,spankbang_fanart)
-    common.addDir("[COLOR white]Virtualpornstars.com[/COLOR]",'url',220,virtualpornstars_icon,virtualpornstars_fanart)
-    common.addDir("[COLOR white]Watchxxxfree.com[/COLOR]",'url',300,watchxxxfree_icon,watchxxxfree_fanart)
-    common.addDir("[COLOR white]Xhamster.com[/COLOR]",'url',10,xhamster_icon,xhamster_fanart)
-    common.addDir("[COLOR white]XNXX.com[/COLOR]",'url',30,xnxx_icon,xnxx_fanart)
-    common.addDir("[COLOR white]Xvideos.com[/COLOR]",'url',260,xvideos_icon,xvideos_fanart)
-    common.addDir("[COLOR white]YouPorn.com[/COLOR]",'url',70,youporn_icon,youporn_fanart)
+    sources = __all__ ; video_sources = []; base_name = []; menu_mode = []; art_dir = []
+    sources = [i for i in sources if i != 'chaturbate']
+    for i in sources:
+        try:
+            if eval(i + ".type") == 'video': 
+                base_name.append(eval(i + ".base_name"))
+                menu_mode.append(eval(i + ".menu_mode"))
+                art_dir.append(i)
+                video_sources = zip(base_name,menu_mode,art_dir)
+        except: pass
 
-    common.SET_VIEW('list')
-    
-def LIVE():
+    if video_sources:
+        dirlst = []
+        for i in sorted(video_sources):
+            dirlst.append({'name': kodi.giveColor(i[0],'white'), 'url': None, 'mode': i[1], 'icon': specific_icon % i[2], 'fanart': specific_fanart % i[2], 'folder': True})
 
-    common.addDir("[COLOR white]Chaturbate.com[/COLOR]",'url',20,chaturbate_icon,chaturbate_fanart)
-    common.addDir("[COLOR white]Live Channels[/COLOR]",'none',700,icon,fanart)
-
-    common.SET_VIEW('list')
-    
-def FILMS():
-
-    common.addDir("[COLOR white]Ultra-Vid[/COLOR]",'None',710,ultravid_icon,ultravid_fanart)
-    common.addDir("[COLOR white]Freeomovie[/COLOR]",'None',720,freeomovie_icon,freeomovie_fanart)
-
-    common.SET_VIEW('list')
-
-def PICTURES():
-
-    common.addDir("[COLOR white]Motherless Pictures[/COLOR]","url",90,motherless_icon,motherless_fanart)
-    common.addDir("[COLOR white]XNXX Pictures[/COLOR]","url",34,xnxx_icon,xnxx_fanart)
-    
-    common.SET_VIEW('list')
-    
-def STORIES():
-
-    common.addDir("[COLOR white]XNXX Stories[/COLOR]","url",38,xnxx_icon,xnxx_fanart)
-
-    common.SET_VIEW('list')
-    
+    buildDirectory(dirlst)

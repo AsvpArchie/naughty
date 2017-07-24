@@ -126,7 +126,7 @@ def List(url, page=1):
     try:
         listhtml = utils.getHtml2(url)
     except:
-        utils.notify('Oh oh','It looks like this website is down.')
+        
         return None
     match = re.compile(r'<li>\s+<a href="([^"]+)".*?src="([^"]+)".*?<div[^>]+>([^<]+)</div>.*?href[^>]+>([^<]+)<.*?age[^>]+>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, status, name, age in match:
@@ -168,7 +168,7 @@ def Playvid(url, name):
     listhtml = utils.getHtml(url, hdr=cbheaders)
     iconimage = xbmc.getInfoImage("ListItem.Thumb")
     
-    m3u8url = re.compile(r"loadHlsVideo\('([^']+)", re.DOTALL | re.IGNORECASE).findall(listhtml)
+    m3u8url = re.compile(r"jsplayer, '([^']+)", re.DOTALL | re.IGNORECASE).findall(listhtml)
     if m3u8url:
         m3u8stream = m3u8url[0]
         if chatslow == 1:
